@@ -7,6 +7,8 @@ import {
   RadioBox,
   MainWrapper,
   BrowserTypeWrapper,
+  Button,
+  Label,
 } from "./styles/appStyle";
 
 const clientPort = 4000;
@@ -21,17 +23,11 @@ const browserTypeList = [
 function App() {
   const [url, setUrl] = useState("");
   const [browserType, setBrowserType] = useState("");
+  const [message, setMessage] = useState("");
   const handleRunTest = async (url, browserType) => {
-    fetch("/run-test", {
-      method: "POST",
-      headers: {
-        "Content-Type": "application/json",
-      },
-      body: JSON.stringify({ url, browserType }),
-    })
-      .then((res) => res.json())
-      .then((data) => console.log(data))
-      .catch((err) => console.log(err));
+    const response = await fetch("/api");
+    const data = await response.json();
+    setMessage(data.message);
   };
   return (
     <MainWrapper>
@@ -42,11 +38,11 @@ function App() {
           onChange={(e) => setUrl(e.target.value)}
         />
       </label>
-
+      {message && <p>{message}</p>}
       <BrowserTypeWrapper>
         {browserTypeList.map(({ title, value }) => {
           return (
-            <label key={value}>
+            <Label key={value}>
               <RadioBox
                 type="radio"
                 value={value}
@@ -54,14 +50,14 @@ function App() {
                 onChange={() => setBrowserType(value)}
               />
               {title}
-            </label>
+            </Label>
           );
         })}
       </BrowserTypeWrapper>
 
-      <button type="button" onClick={() => handleRunTest(url, browserType)}>
+      <Button type="button" onClick={() => handleRunTest(url, browserType)}>
         Run Test
-      </button>
+      </Button>
     </MainWrapper>
   );
 }
