@@ -36,14 +36,16 @@ function App() {
   const [url, setUrl] = useState("");
   const [browserType, setBrowserType] = useState("");
   const handleRunTest = async (url, browserType) => {
-    if (browserType === "all") {
-      // Run the test in all available browsers
-      const browserTypes = ["chromium", "firefox", "webkit"];
-      await Promise.all(browserTypes.map((type) => beforeEach(url, type)));
-    } else {
-      // Run the test in the selected browser
-      await beforeEach(url, browserType);
-    }
+    fetch("/run-test", {
+      method: "POST",
+      headers: {
+        "Content-Type": "application/json",
+      },
+      body: JSON.stringify({ url, browserType }),
+    })
+      .then((res) => res.json())
+      .then((data) => console.log(data))
+      .catch((err) => console.log(err));
   };
   return (
     <MainWrapper>

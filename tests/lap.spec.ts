@@ -1,7 +1,7 @@
 import { test, webkit, chromium, firefox } from "@playwright/test";
 
 let browser;
-
+let page;
 const beforeEach = async ({ page }, testInfo) => {
   const { browserType, url } = testInfo;
   browser = await { chromium, firefox, webkit }[browserType].launch();
