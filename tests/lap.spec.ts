@@ -1,14 +1,26 @@
-import { test, webkit, chromium, firefox } from "@playwright/test";
+import { chromium, Browser, Page } from "@playwright/test";
 
-let browser;
-let page;
-const beforeEach = async ({ page }, testInfo) => {
-  const { browserType, url } = testInfo;
-  browser = await { chromium, firefox, webkit }[browserType].launch();
-  page = await browser.newPage();
-  await page.goto(url);
+interface TestOptions {
+  url: string;
+  browserType: "chromium" | "firefox" | "webkit";
+}
+
+export const runTest = async ({ url, browserType }: TestOptions) => {
+  let browser: Browser;
+  let page: Page;
+
+  beforeEach(async () => {
+    browser = await chromium.launch();
+    page = await browser.newPage();
+  });
+
+  afterEach(async () => {
+    await browser.close();
+  });
+
+  it("should load the page", async () => {
+    await page.goto(url);
+    const title = await page.title();
+    expect(title).toBe("My Page Title");
+  });
 };
-
-test.beforeEach(beforeEach);
-
-export { beforeEach };

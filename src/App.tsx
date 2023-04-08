@@ -1,7 +1,16 @@
 import React from "react";
 import { useState } from "react";
 import styled from "styled-components";
-import { beforeEach } from "../tests/lap.spec";
+// import { beforeEach } from "../tests/lap.spec";
+import {
+  UrlInput,
+  RadioBox,
+  MainWrapper,
+  BrowserTypeWrapper,
+} from "./styles/appStyle";
+
+const clientPort = 4000;
+const serverUrl = `http://localhost:${clientPort}`;
 
 const browserTypeList = [
   { title: "Chrome", value: "chromium" },
@@ -9,29 +18,6 @@ const browserTypeList = [
   { title: "Edge", value: "webkit" },
 ];
 
-const UrlInput = styled.input`
-  width: 80%;
-  font-size: 2rem;
-  padding: 1rem;
-`;
-
-const BrowserTypeWrapper = styled.div`
-  display: flex;
-  gap: 1rem;
-`;
-
-const RadioBox = styled.input`
-  width: 2rem;
-  height: 2rem;
-`;
-
-const MainWrapper = styled.div`
-  padding: 5rem;
-  font-size: 2rem;
-  display: flex;
-  flex-direction: column;
-  gap: 1rem;
-`;
 function App() {
   const [url, setUrl] = useState("");
   const [browserType, setBrowserType] = useState("");
