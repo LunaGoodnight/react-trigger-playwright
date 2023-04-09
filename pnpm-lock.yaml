@@ -21,7 +21,6 @@ specifiers:
 
 dependencies:
   cors: 2.8.5
-  dotenv: 16.0.3
   express: 4.18.2
   react: 18.2.0
   react-dom: 18.2.0_react@18.2.0
@@ -35,6 +34,7 @@ devDependencies:
   '@types/react-dom': 18.0.11
   '@types/styled-components': 5.1.26
   '@vitejs/plugin-react-swc': 3.2.0_vite@4.2.1
+  dotenv: 16.0.3
   nodemon: 2.0.22
   prettier: 2.8.7
   typescript: 5.0.4
@@ -880,7 +880,7 @@ packages:
   /dotenv/16.0.3:
     resolution: {integrity: sha512-7GO6HghkA5fYG9TYnNxi14/7K9f5occMlp3zXAuSxn7CKCxt9xbNWG7yF8hTCSUchlfWSe3uLmlPfigevRItzQ==}
     engines: {node: '>=12'}
-    dev: false
+    dev: true
 
   /ee-first/1.1.1:
     resolution: {integrity: sha512-WMwm9LhRUo+WUaRN+vRuETqG89IgZphVSNkdFgeb6sS/E4OrDIN7t48CAewSHXc6C8lefD8KKfr5vY61brQlow==}
