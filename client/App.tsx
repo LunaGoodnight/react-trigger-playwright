@@ -10,6 +10,7 @@ import {
   Button,
   Label,
 } from "./styles/appStyle";
+import { runPlaywrightTest } from "../tests/playwright.spec";
 
 const clientPort = 4000;
 const serverUrl = `http://localhost:${clientPort}`;
@@ -25,10 +26,11 @@ function App() {
   const [browserType, setBrowserType] = useState("");
   const [message, setMessage] = useState("");
   const handleRunTest = async (url, browserType) => {
-    const response = await fetch("/api");
+    const response = await fetch("/api/test");
     const data = await response.json();
     setMessage(data.message);
   };
+
   return (
     <MainWrapper>
       <label>
