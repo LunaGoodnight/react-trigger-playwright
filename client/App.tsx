@@ -26,7 +26,7 @@ function App() {
   const [browserType, setBrowserType] = useState("");
   const [message, setMessage] = useState("");
   const handleRunTest = async (url, browserType) => {
-    const response = await fetch("/api/test");
+    const response = await fetch("/api/runtests");
     const data = await response.json();
     setMessage(data.message);
   };
